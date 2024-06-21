@@ -33,10 +33,11 @@ function App() {
 
   const loadBlockchainData = async () => {
     // Connect to blockchain
-    const provider = new ethers.providers.JsonRpcProvider("https://eth-goerli.g.alchemy.com/v2/JKitIFsogKIATcQOVL53nTszyAlokY6T");
+    await window.ethereum.send("eth_requestAccounts");
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider)
 
-    const contractAddress = "0xc7FEAB23d887ADfC2c967bAAdf529F4ed3d161df";
+    const contractAddress = "0x334C6e72C11895C032DC5810897Aae55C5E4A761";
     const contractABI = Dappazon;
 
     const network = await provider.getNetwork()
